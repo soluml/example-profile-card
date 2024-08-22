@@ -1,0 +1,13 @@
+{
+  "name": "profile-card",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A quick example of a profile card using vanilla css, p3 color, color functions and a bit of reactivity to change the gravatar.",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "build": ""
+  },
+  "author": "Benjamin Solum",
+  "license": "UNLICENSED"
+}
