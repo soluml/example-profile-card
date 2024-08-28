@@ -14,38 +14,36 @@ async function getGravatarAndColor(
   gravatarSize = 100,
   dropPosition = { x: 50, y: 50 }
 ) {
-  const { promise, resolve } = Promise.withResolvers();
-
   const hash = await gravatarHash(email);
 
-  const canvasEl = document.createElement("canvas");
-  const ctx = canvasEl.getContext("2d");
-  canvasEl.width = gravatarSize;
-  canvasEl.height = gravatarSize;
+  return new Promise((resolve) => {
+    const canvasEl = document.createElement("canvas");
+    const ctx = canvasEl.getContext("2d");
+    canvasEl.width = gravatarSize;
+    canvasEl.height = gravatarSize;
 
-  const imgSrc = "https://gravatar.com/avatar/" + hash;
-  const imgEl = new Image();
-  imgEl.crossOrigin = "Anonymous";
-  imgEl.addEventListener(
-    "load",
-    () => {
-      ctx.drawImage(imgEl, 0, 0);
+    const imgSrc = "https://gravatar.com/avatar/" + hash;
+    const imgEl = new Image();
+    imgEl.crossOrigin = "Anonymous";
+    imgEl.addEventListener(
+      "load",
+      () => {
+        ctx.drawImage(imgEl, 0, 0);
 
-      const imageData = ctx.getImageData(
-        dropPosition.x,
-        dropPosition.y,
-        gravatarSize,
-        gravatarSize
-      ).data;
-      const rgbColor = [imageData[0], imageData[1], imageData[2]];
+        const imageData = ctx.getImageData(
+          dropPosition.x,
+          dropPosition.y,
+          gravatarSize,
+          gravatarSize
+        ).data;
+        const rgbColor = [imageData[0], imageData[1], imageData[2]];
 
-      resolve({ rgbColor, imgSrc });
-    },
-    { once: true }
-  );
-  imgEl.src = `${imgSrc}?s=${gravatarSize}`;
-
-  return promise;
+        resolve({ rgbColor, imgSrc });
+      },
+      { once: true }
+    );
+    imgEl.src = `${imgSrc}?s=${gravatarSize}`;
+  });
 }
 
 (async () => {

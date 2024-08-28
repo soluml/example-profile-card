@@ -3,14 +3,53 @@
   <head>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
+    <style>
+      body {
+        display: grid;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        height: 100vh;
+        margin: 0;
+        place-content: center;
+      }
+    </style>
   </head>
   <body>
     <div class="profile-card">
-      <img
-        alt="avatar"
-        class="profile-card__img"
-        src="https://gravatar.com/avatar/2b7f4b106412e7a73b926c33e681fa095a549ec0812c7aee7d605c35f9d5cb9c?s=200"
-      />
+      <figure class="profile-card__figure">
+        <div class="profile-card__figureCnt">
+          <img
+            alt="avatar"
+            class="profile-card__img"
+            src="https://gravatar.com/avatar/2b7f4b106412e7a73b926c33e681fa095a549ec0812c7aee7d605c35f9d5cb9c?s=80"
+            srcset="
+              https://gravatar.com/avatar/2b7f4b106412e7a73b926c33e681fa095a549ec0812c7aee7d605c35f9d5cb9c?s=160 2x
+            "
+          />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path
+              d="M0,192L34.3,202.7C68.6,213,137,235,206,202.7C274.3,171,343,85,411,53.3C480,21,549,43,617,69.3C685.7,96,754,128,823,170.7C891.4,213,960,267,1029,266.7C1097.1,267,1166,213,1234,186.7C1302.9,160,1371,160,1406,160L1440,160L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"
+            ></path>
+            <path
+              d="M0,160L60,181.3C120,203,240,245,360,250.7C480,256,600,224,720,181.3C840,139,960,85,1080,90.7C1200,96,1320,160,1380,192L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+            ></path>
+            <path
+              d="M0,256L34.3,234.7C68.6,213,137,171,206,144C274.3,117,343,107,411,128C480,149,549,203,617,229.3C685.7,256,754,256,823,240C891.4,224,960,192,1029,186.7C1097.1,181,1166,203,1234,181.3C1302.9,160,1371,96,1406,64L1440,32L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"
+            ></path>
+          </svg>
+        </div>
+        <figcaption class="profile-card__figureCaption">
+          <span class="profile-card__figureCaptionName">Benjamin Solum</span>
+          <a
+            class="profile-card__figureCaptionHandle"
+            href="#"
+            rel="noreferrer"
+            target="_blank"
+            >@soluml</a
+          >
+        </figcaption>
+      </figure>
     </div>
   </body>
 </html>
