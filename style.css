@@ -1,6 +1,9 @@
 .profile-card {
-  --c: 35, 31, 32;
   --padding: 1rem;
+  --c: 35, 31, 32;
+  --c3: rgb(var(--c));
+  --c2: color-mix(in srgb, rgb(var(--c)) 30%, white);
+  --c1: color-mix(in srgb, rgb(var(--c)) 60%, white);
 
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -29,7 +32,7 @@
   display: grid;
 
   &::before {
-    background: rgb(var(--c));
+    background: var(--c3);
     content: "";
     grid-column: 1;
     grid-row: 1;
@@ -43,15 +46,15 @@
   }
 
   path {
-    fill: color-mix(in srgb, rgb(var(--c)) 30%, white);
+    fill: var(--c1);
     transition: fill 0.3s ease-in;
 
     + path {
-      fill: color-mix(in srgb, rgb(var(--c)) 60%, white);
+      fill: var(--c2);
       transition-delay: 0.3s;
 
       + path {
-        fill: rgb(var(--c));
+        fill: var(--c3);
         transition-delay: 0.6s;
       }
     }
@@ -118,5 +121,36 @@
 
   svg {
     display: inline-block;
+  }
+}
+
+.profile-card__bio {
+  text-wrap: pretty;
+  width: fit-content;
+}
+
+.profile-card__actions {
+  display: grid;
+  gap: var(--padding);
+  grid-template-columns: 1fr 1fr;
+
+  a {
+    background-color: var(--c1);
+    border: 1px solid var(--c1);
+    border-radius: 1em;
+    color: currentColor;
+    display: block;
+    font-size: 0.8em;
+    font-weight: 400;
+    line-height: 1;
+    padding: 0.5em;
+    text-decoration: none;
+    text-align: center;
+    width: fit-content;
+
+    &:last-of-type {
+      background: none;
+      border: 1px solid currentColor;
+    }
   }
 }
