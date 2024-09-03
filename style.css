@@ -2,9 +2,9 @@
   --c: 35, 31, 32;
   --padding: 1rem;
 
-  background: white;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px light-dark(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
   font-size: 1rem;
   max-width: fit-content;
   overflow: clip;
