@@ -1,3 +1,5 @@
+const DEFAULT_GRAVATAR_SIZE = 80;
+
 async function gravatarHash(email) {
   const textAsBuffer = new TextEncoder().encode(email);
   const hashBuffer = await window.crypto.subtle.digest("SHA-256", textAsBuffer);
@@ -11,7 +13,7 @@ async function gravatarHash(email) {
 
 async function getGravatarAndColor(
   email,
-  gravatarSize = 100,
+  gravatarSize = DEFAULT_GRAVATAR_SIZE,
   dropPosition = { x: 50, y: 50 }
 ) {
   const hash = await gravatarHash(email);
@@ -46,8 +48,31 @@ async function getGravatarAndColor(
   });
 }
 
-(async () => {
-  const { rgbColor, imgSrc } = await getGravatarAndColor("benjamin@soluml.com");
+document.addEventListener("click", async (event) => {
+  const { target } = event;
+  const selector = ".profile-card__imgBtn";
+  const profileCardImgBtnEl = target.matches(selector)
+    ? target
+    : target.closest(selector);
 
-  console.log({ rgbColor, imgSrc });
-})();
+  if (!profileCardImgBtnEl) {
+    return;
+  }
+
+  const email = prompt("Change the gravatar?", "");
+
+  if (!email) {
+    return;
+  }
+
+  const { rgbColor, imgSrc } = await getGravatarAndColor(email);
+  const profileCardEl = profileCardImgBtnEl.closest(".profile-card");
+  const profileCardImgEl = profileCardImgBtnEl.children[0];
+
+  profileCardImgEl.style.setProperty(
+    "srcset",
+    `${imgSrc}?s=${DEFAULT_GRAVATAR_SIZE * 2} 2x`
+  );
+  profileCardImgEl.src = `${imgSrc}?s=${DEFAULT_GRAVATAR_SIZE}`;
+  profileCardEl.style.setProperty("--c", rgbColor.join(", "));
+});
